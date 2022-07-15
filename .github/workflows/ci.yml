@@ -25,7 +25,6 @@ jobs:
         with:
           start: npm start
           install: false
-          record: true
         env:
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
           
