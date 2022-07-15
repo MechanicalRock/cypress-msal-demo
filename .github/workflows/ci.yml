@@ -20,6 +20,9 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
+        with:
+          build: npm run build
+          start: serve -s build -p 3000
         env:
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
