@@ -33,5 +33,5 @@ jobs:
         with:
           name: cypress-output
           path: |
-            /cypress/videos
-            /cypress/screenshots
+            ${{ github.workspace }}/cypress/videos
+            ${{ github.workspace }}/cypress/screenshots
