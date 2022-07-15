@@ -24,3 +24,5 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           start: npm start
+        env:
+          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
