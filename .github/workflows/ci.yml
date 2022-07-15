@@ -24,5 +24,14 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           start: npm start
+          install: false
+          record: true
         env:
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cypress-output
+          path: |
+            /cypress/videos
+            /cypress/screenshots
