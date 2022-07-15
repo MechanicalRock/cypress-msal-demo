@@ -18,6 +18,8 @@ jobs:
           node-version: 16
           cache: 'npm'
 
+      - run: npm install -g serve
+
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
