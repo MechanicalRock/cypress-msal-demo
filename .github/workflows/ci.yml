@@ -2,11 +2,11 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 jobs:
-  build:
+  e2e:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
 
@@ -17,17 +17,15 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-          
-      - run: npm ci
-    
+
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
           start: npm start
-          install: false
         env:
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
-          
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
