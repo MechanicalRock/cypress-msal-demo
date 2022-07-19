@@ -16,16 +16,14 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         env:
-          CYPRESS_AZURE_TENANT_ID: ${{ secrets.CYPRESS_AZURE_TENANT_ID }}
-          CYPRESS_AZURE_CLIENT_ID: ${{ secrets.CYPRESS_AZURE_CLIENT_ID }}
-          CYPRESS_AZURE_CLIENT_SECRET: ${{ secrets.CYPRESS_AZURE_CLIENT_SECRET }}
-          CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
-          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          CYPRESS_AZURE_TENANT_ID: ${{secrets.CYPRESS_AZURE_TENANT_ID}}
+          CYPRESS_AZURE_CLIENT_ID: ${{secrets.CYPRESS_AZURE_CLIENT_ID}}
+          CYPRESS_AZURE_CLIENT_SECRET: ${{secrets.CYPRESS_AZURE_CLIENT_SECRET}}
+          CYPRESS_USERNAME: ${{secrets.CYPRESS_USERNAME}}
+          CYPRESS_PASSWORD: ${{secrets.CYPRESS_PASSWORD}}
         with:
           browser: chrome
           start: npm start
-          env: AZURE_TENANT_ID=${{ secrets.CYPRESS_AZURE_TENANT_ID }}
 
       - uses: actions/upload-artifact@v2
         if: failure()
