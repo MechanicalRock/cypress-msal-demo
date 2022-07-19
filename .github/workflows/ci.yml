@@ -18,14 +18,11 @@ jobs:
           node-version: 16
           cache: 'npm'
 
-      - run: npm install -g serve
-
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
           browser: chrome
-          build: npm run build
-          start: serve -s build -p 3000
+          start: npm start
         env:
           CYPRESS_AZURE_TENANT_ID: ${{ secrets.CYPRESS_AZURE_TENANT_ID }}
           CYPRESS_AZURE_CLIENT_ID: ${{ secrets.CYPRESS_AZURE_CLIENT_ID }}
