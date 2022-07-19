@@ -1,6 +1,9 @@
 describe('login spec', () => {
-	it('should log in as a user', () => {
+	before(() => {
 		cy.login();
+	});
+
+	it('should be logged in', () => {
 		cy.visit('/');
 		cy.contains('Welcome');
 		cy.contains('Authenticated');

@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { ExternalTokenResponse } from '@azure/msal-browser';
 import { decode, JwtPayload } from 'jsonwebtoken';
 
 // ***********************************************
@@ -13,7 +14,7 @@ import { decode, JwtPayload } from 'jsonwebtoken';
 //
 //
 
-const injectTokens = (tokenResponse: any) => {
+const injectTokens = (tokenResponse: ExternalTokenResponse) => {
 	const environment = 'login.windows.net';
 	const idTokenClaims: JwtPayload = decode(tokenResponse.id_token);
 	const localAccountId = idTokenClaims.oid || idTokenClaims.sid;
