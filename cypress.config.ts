@@ -5,7 +5,7 @@ export default defineConfig({
 		baseUrl: 'http://localhost:3000/',
 		env: {
 			AZURE_CLIENT_ID: '',
-			AZURE_TENANT_ID: '',
+			tenantid: '',
 			AZURE_CLIENT_SECRET: '',
 			USERNAME: '',
 			PASSWORD: '',
