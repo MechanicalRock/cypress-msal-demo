@@ -25,7 +25,7 @@ jobs:
         with:
           browser: chrome
           start: npm start
-          env: true
+          env: AZURE_TENANT_ID=${{ secrets.CYPRESS_AZURE_TENANT_ID }}
 
       - uses: actions/upload-artifact@v2
         if: failure()
