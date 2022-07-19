@@ -30,10 +30,14 @@ jobs:
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: cypress-output
-          path: |
-            ${{ github.workspace }}/cypress/videos
-            ${{ github.workspace }}/cypress/screenshots
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
