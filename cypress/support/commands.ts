@@ -18,8 +18,8 @@ const injectTokens = (tokenResponse: ExternalTokenResponse) => {
 	const environment = 'login.windows.net';
 	const idTokenClaims: JwtPayload = decode(tokenResponse.id_token);
 	const localAccountId = idTokenClaims.oid || idTokenClaims.sid;
-	const clientId = Cypress.env('clientId');
-	const realm = Cypress.env('tenantId');
+	const clientId = Cypress.env('AZURE_CLIENT_ID');
+	const realm = Cypress.env('AZURE_TENANT_ID');
 	const homeAccountId = `${localAccountId}.${realm}`;
 
 	setSessionToken({
@@ -82,8 +82,8 @@ const setSessionAccessToken = ({
 }) => {
 	const now = Math.floor(Date.now() / 1000);
 	const accessTokenId = `${homeAccountId}-${environment}-accesstoken-${Cypress.env(
-		'clientId'
-	)}-${Cypress.env('tenantId')}-${tokenResponse.scope}--`;
+		'AZURE_CLIENT_ID'
+	)}-${Cypress.env('AZURE_TENANT_ID')}-${tokenResponse.scope}--`;
 	const accessToken = {
 		credentialType: 'AccessToken',
 		tokenType: 'Bearer',
@@ -101,20 +101,19 @@ const setSessionAccessToken = ({
 };
 
 Cypress.Commands.add('login', () => {
-	cy.log('Tenant ID', Cypress.env('tenantId'));
 	cy.request({
 		method: 'POST',
 		url: `https://login.microsoftonline.com/${Cypress.env(
-			'tenantId'
+			'AZURE_TENANT_ID'
 		)}/oauth2/v2.0/token`,
 		form: true,
 		body: {
 			grant_type: 'password',
-			client_id: Cypress.env('clientId'),
-			client_secret: Cypress.env('clientSecret'),
+			client_id: Cypress.env('AZURE_CLIENT_ID'),
+			client_secret: Cypress.env('AZURE_CLIENT_SECRET'),
 			scope: 'openid profile email',
-			username: Cypress.env('username'),
-			password: Cypress.env('password'),
+			username: Cypress.env('USERNAME'),
+			password: Cypress.env('PASSWORD'),
 		},
 	}).then((response) => {
 		injectTokens(response.body);
