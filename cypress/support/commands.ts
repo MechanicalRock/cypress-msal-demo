@@ -101,6 +101,7 @@ const setSessionAccessToken = ({
 };
 
 Cypress.Commands.add('login', () => {
+	cy.log('Tenant ID', Cypress.env('tenantId'));
 	cy.request({
 		method: 'POST',
 		url: `https://login.microsoftonline.com/${Cypress.env(
