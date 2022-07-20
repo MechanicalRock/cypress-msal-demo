@@ -9,18 +9,18 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
+    env:
+      CYPRESS_tenantId: ${{secrets.CYPRESS_AZURE_TENANT_ID}}
+      CYPRESS_clientId: ${{secrets.CYPRESS_AZURE_CLIENT_ID}}
+      CYPRESS_clientSecret: ${{secrets.CYPRESS_AZURE_CLIENT_SECRET}}
+      CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
+      CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
-        env:
-          CYPRESS_tenantId: ${{secrets.CYPRESS_AZURE_TENANT_ID}}
-          CYPRESS_clientId: ${{secrets.CYPRESS_AZURE_CLIENT_ID}}
-          CYPRESS_clientSecret: ${{secrets.CYPRESS_AZURE_CLIENT_SECRET}}
-          CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
-          CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
         with:
           browser: chrome
           start: npm start
