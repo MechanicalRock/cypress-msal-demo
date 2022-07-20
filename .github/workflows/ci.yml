@@ -9,6 +9,9 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
+    env:
+      REACT_APP_AZURE_CLIENT_ID: ${{secrets.CYPRESS_AZURE_CLIENT_ID}}
+      REACT_APP_AZURE_TENANT_ID: ${{secrets.CYPRESS_AZURE_TENANT_ID}}
 
     steps:
       - uses: actions/checkout@v3
