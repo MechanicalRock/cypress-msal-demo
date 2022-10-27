@@ -1,6 +1,6 @@
 # MSAL Cypress Demo
 
-This is the demo repo for the blog article on [Azure AD authentication in Cypress tests using MSAL]().
+This is the demo repo for the blog article on [Azure AD authentication in Cypress tests using MSAL](https://blog.mechanicalrock.io/2022/08/08/azure-ad-authentication-cypress.html).
 
 ## Prerequisites
 
